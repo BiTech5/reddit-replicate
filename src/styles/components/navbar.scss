@@ -1,0 +1,88 @@
+@use "../../variables/variable.scss" as *;
+
+nav {
+    height: 70px;
+    background-color: $background-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    font-weight: bold;
+
+    img {
+        height: 30px;
+    }
+
+    p {
+        font-size: x-large;
+    }
+}
+
+.search-container {
+    position: relative;
+
+    input {
+        width: 450px;
+        padding: 10px 40px;
+        font-size: 15px;
+        border: none;
+        border-radius: 20px;
+        background-color: $btn-color;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: whitesmoke;
+    }
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+#getapp {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: $btn-color;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.log-in {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+    background-color: #de3800;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.three-dot {
+    margin: 10px 0;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
