@@ -1,0 +1,100 @@
+@import "../../Shared/shared";
+
+.post-card {
+    margin-bottom: 20px;
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: #333;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #181c1f;
+        }
+
+        .head-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .user-detail {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .profile-img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #ccc;
+                }
+
+                .user-meta {
+                    display: flex;
+                    flex-direction: column;
+
+                    .username {
+                        font-weight: bold;
+                        font-size: 1rem;
+                    }
+
+                    .date {
+                        font-size: 0.85rem;
+                        color: #aaa;
+                    }
+                }
+            }
+
+            .btns {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .join-btn {
+                    background-color: rgb(19, 136, 186);
+                    color: white;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 6px 12px;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgb(24, 156, 212);
+                    }
+                }
+
+                .three-dot-btn {
+                    border: none;
+                    background: none;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    @include three-dot;
+                }
+            }
+        }
+
+        .post-content {
+            .post-heading {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .post-text {
+                font-size: 1rem;
+                color: #ccc;
+                line-height: 1.6;
+            }
+        }
+    }
+}
