@@ -7,7 +7,8 @@ aside {
     color: white;
     overflow-y: auto;
     font-family: Arial, sans-serif;
-
+    flex-shrink: 0;
+    border-right:1px solid gray ;
     .sidebar {
         ul {
             padding: 0;
