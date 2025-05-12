@@ -7,82 +7,104 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid gray;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     color: white;
     font-weight: bold;
 
     img {
-        height: 30px;
+        height: 32px;
     }
 
     p {
-        font-size: x-large;
+        font-size: 20px;
     }
 }
 
 .search-container {
     position: relative;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
 
-    input {
-        width: 450px;
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: whitesmoke;
+        font-size: 14px;
+    }
+
+    .search-input {
+        width: 100%;
         padding: 10px 40px;
         font-size: 15px;
         border: none;
         border-radius: 20px;
         background-color: $btn-color;
         color: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
 
-    span {
-        position: absolute;
-        top: 50%;
-        left: 10px;
-        transform: translateY(-50%);
-        color: whitesmoke;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
     }
 }
 
 .button-container {
     display: flex;
-    gap: 10px;
-    margin: 10px;
-}
-
-#getapp {
-    display: flex;
     align-items: center;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: $btn-color;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
+    gap: 12px;
 
-.log-in {
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bolder;
-    color: white;
-    background-color: #de3800;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
+    button {
+        font-size: 14px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
 
-.three-dot {
-    margin: 10px 0;
-    font-size: 20px;
-    color: white;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+    .get-app {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        font-weight: bold;
+        background-color: $btn-color;
+        color: white;
+
+        .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+    }
+
+    .log-in {
+        padding: 8px 16px;
+        font-weight: bold;
+        background-color: #de3800;
+        color: white;
+
+    }
+
+    .three-dot {
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+        padding: 8px;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+    }
 }
