@@ -23,7 +23,7 @@
     .modal-content {
         height: 98vh;
         position: relative;
-        background: #1a1a1b;
+        background: #181C1F;
         color: white;
         padding: 3rem 6rem;
         border-radius: 10px;
@@ -113,7 +113,7 @@
                 padding: 1.0rem;
                 border-radius: 4px;
                 border: 1px solid #555;
-                background: #2c2c2e;
+                background: #384247d5;
                 color: white;
                 border-radius: 20px;
                 font-size: 0.95rem;
@@ -126,13 +126,14 @@
                 font-size: 0.85rem;
             }
             .submit {
-                background: #0079d3;
-                color: white;
-                padding: 0.75rem;
+                margin-top: 2.75rem;
+                background: #23272A;
+                color: #383f44;
+                padding: 0.95rem;
                 border: none;
                 border-radius: 20px;
                 font-weight: bold;
-                cursor: pointer;
+                cursor: default;
             }
 
             
