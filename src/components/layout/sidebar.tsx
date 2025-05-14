@@ -15,6 +15,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { FiTool } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import "../../styles/components/sidebar.scss";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(false);
@@ -43,8 +44,13 @@ const Sidebar = () => {
     <aside>
       <div className="sidebar">
         <ul>
-          <li><MdOutlineHome /> Home</li>
-          <li><BsArrowUpRightCircleFill /> Popular</li>
+          <li><NavLink to="/">
+            <MdOutlineHome /> Home
+          </NavLink></li>
+          <li>
+            <NavLink to="/popular">
+              <BsArrowUpRightCircleFill /> Popular
+            </NavLink></li>
 
           <li className="section-title" onClick={() => setIsTopicsOpen(!isTopicsOpen)}>
             <span>Topics</span>
@@ -54,7 +60,7 @@ const Sidebar = () => {
             <ul className="nested-list">
               {topics.map((topic, index) => (
                 <li key={index}>
-                  {topic.icon} {topic.name}
+                  <NavLink to={`/${topic.name}`}> {topic.icon} {topic.name}</NavLink>
                 </li>
               ))}
             </ul>
@@ -68,7 +74,9 @@ const Sidebar = () => {
             <ul className="nested-list">
               {resources.map((resource, index) => (
                 <li key={index}>
-                  {resource.icon} {resource.name}
+                  <NavLink to={`/${resource.name}`}>
+                    {resource.icon} {resource.name}
+                  </NavLink>
                 </li>
               ))}
             </ul>

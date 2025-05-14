@@ -1,5 +1,5 @@
 @use "../../variables/variable.scss" as *;
-@import "../../Shared/shared";
+@use "../../Shared/shared" as *;
 
 nav {
     height: 70px;
