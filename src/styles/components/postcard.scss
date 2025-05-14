@@ -1,7 +1,10 @@
-@import "../../Shared/shared";
+@use "../../Shared/shared" as *;
 
 .post-card {
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
+    padding: 0 1rem;
+    max-width: 650px; // 🔽 Constrains the card width
+    width: 100%;
 
     hr {
         border: 0;

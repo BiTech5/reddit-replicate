@@ -4,7 +4,6 @@ import "../../styles/components/navbar.scss";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
-
 const Navbar = () => {
   return (
     <nav>
