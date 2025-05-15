@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #0d0d0d;
+    background-color: #0E1113;
     color: #cfd4db;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,16 +24,16 @@
 
     .error-button {
         width: 100%;
-        padding: 12px 24px;
+        padding: 10px;
         background-color: #1a56db;
         border: none;
         border-radius: 9999px;
         color: white;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         font-weight: 600;
         cursor: pointer;
         transition: background-color 0.2s ease;
-
+        text-decoration: none;
         &:hover {
             background-color: #174ac3;
         }
