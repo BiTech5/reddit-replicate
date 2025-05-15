@@ -4,6 +4,7 @@ import Sidebar from './components/layout/sidebar'
 import Home from './pages/Home'
 import Popular from './pages/popular'
 import { Routes, Route } from 'react-router-dom'
+import Error from './components/Error/404'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/popular" element={<Popular />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </div>
       </div>
