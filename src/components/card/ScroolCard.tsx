@@ -24,7 +24,17 @@ const ScrollCard = () => {
             key={index}
             className="item"
             style={{ backgroundImage: `url(${item})` }}
-          />
+          >
+            <div className="detail">
+
+              <h1>Heading</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <div className="user-detail">
+                <img src="https://thispersondoesnotexist.com" alt="profile-img" />
+                <span className="username">Username</span> <span className="more">and more</span>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
       <IoIosArrowForward className="arrow-btn" onClick={scrollRight} />
