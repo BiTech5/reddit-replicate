@@ -5,7 +5,7 @@ import "../styles/pages/popular.scss"
 const Popular = () => {
     return (
         <>
-            <main>
+            <main className="popular-container">
                 <div className="carousel">
 
                     <ScrollCard />
