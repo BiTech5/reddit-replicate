@@ -15,8 +15,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { FiTool } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import "../../styles/components/sidebar.scss";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
 const Sidebar = () => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(true);
   const [isResourcesOpen, setIsResourcesOpen] = useState(true);
@@ -74,9 +73,9 @@ const Sidebar = () => {
             <ul className="nested-list">
               {resources.map((resource, index) => (
                 <li key={index}>
-                  <NavLink to={`/${resource.url}`}>
+                  <Link to={`${resource.url}`}>
                     {resource.icon} {resource.name}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>
