@@ -1,0 +1,15 @@
+@use "../../variables/variable.scss" as *;
+
+.report {
+    button {
+        background-color: $background-color;
+        color: white;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        float: right;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: large;
+    }
+}
