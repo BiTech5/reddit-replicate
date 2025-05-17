@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import {
-  MdOutlineHome,
-  MdMovieCreation
-} from "react-icons/md";
+import { MdOutlineHome, MdMovieCreation } from "react-icons/md";
 import { BsArrowUpRightCircleFill, BsBarChartLine } from "react-icons/bs";
 import { PiMaskHappyFill } from "react-icons/pi";
 import { BiSolidJoystick } from "react-icons/bi";
@@ -15,10 +12,22 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { FiTool } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import "../../styles/components/sidebar.scss";
+
+import { NavLink } from "react-router-dom";
+
+interface SidebarProps {
+  navOpen: boolean;
+}
+
+const Sidebar = ({ navOpen }: SidebarProps) => {
+  const [isTopicsOpen, setIsTopicsOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+
 import { NavLink, Link } from "react-router-dom";
 const Sidebar = () => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(true);
   const [isResourcesOpen, setIsResourcesOpen] = useState(true);
+
 
   const topics = [
     { icon: <PiMaskHappyFill />, name: "Internet Culture (Viral)" },
@@ -40,22 +49,22 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside>
-      <div className="sidebar">
+    <aside className={`sidebar ${navOpen ? 'open' : 'collapsed'}`}>
+      {navOpen && (
         <ul>
           <li><NavLink to="/">
-            <MdOutlineHome /> Home
+            <MdOutlineHome /> {navOpen && 'Home'}
           </NavLink></li>
           <li>
             <NavLink to="/popular">
-              <BsArrowUpRightCircleFill /> Popular
+              <BsArrowUpRightCircleFill /> {navOpen && 'Popular'}
             </NavLink></li>
 
           <li className="section-title" onClick={() => setIsTopicsOpen(!isTopicsOpen)}>
-            <span>Topics</span>
-            {isTopicsOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+            <span>{navOpen && 'Topics'}</span>
+            {navOpen && (isTopicsOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />)}
           </li>
-          {isTopicsOpen && (
+          {isTopicsOpen && navOpen && (
             <ul className="nested-list">
               {topics.map((topic, index) => (
                 <li key={index}>
@@ -66,10 +75,10 @@ const Sidebar = () => {
           )}
 
           <li className="section-title" onClick={() => setIsResourcesOpen(!isResourcesOpen)}>
-            <span>Resources</span>
-            {isResourcesOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+            <span>{navOpen && 'Resources'}</span>
+            {navOpen && (isResourcesOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />)}
           </li>
-          {isResourcesOpen && (
+          {isResourcesOpen && navOpen && (
             <ul className="nested-list">
               {resources.map((resource, index) => (
                 <li key={index}>
@@ -81,14 +90,20 @@ const Sidebar = () => {
             </ul>
           )}
 
+
+          <li><FaRegStar /> {navOpen && 'Communities'}</li>
+          <li><CgSandClock /> {navOpen && 'Best of Reddit'}</li>
+
           <li><NavLink to={"https://www.reddit.com/best/communities/1/"}>
             <FaRegStar /> Communities
           </NavLink></li>
           <li><NavLink to={"https://www.reddit.com/posts/2025/global/"}>
             <CgSandClock /> Best of Reddit
           </NavLink></li>
+
         </ul>
-      </div>
+      )}
+
     </aside>
   );
 };

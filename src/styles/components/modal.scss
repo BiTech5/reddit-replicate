@@ -29,6 +29,7 @@
         max-width: 45%;
         width: 100%;
         z-index: 1001;
+        box-sizing: border-box;
 
         .close-button {
             height: 30px;
@@ -52,6 +53,47 @@
                 background-color: rgba(255, 255, 255, 0.333);
             }
         }
+    }
+}
 
+@media (max-width: 1024px) {
+    .modal-wrapper {
+        padding: 8px;
+
+        .modal-content {
+            padding: 2.5rem 4rem;
+            max-width: 70%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-wrapper {
+        padding: 6px;
+
+        .modal-content {
+            padding: 2rem 3rem;
+            max-width: 85%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-wrapper {
+        padding: 4px;
+
+        .modal-content {
+            padding: 1.5rem 1.5rem;
+            max-width: 95%;
+            border-radius: 8px;
+        }
+
+        .modal-content .close-button {
+            top: 0.5rem;
+            right: 0.5rem;
+            height: 28px;
+            width: 28px;
+            font-size: 1.25rem;
+        }
     }
 }
