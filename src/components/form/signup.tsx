@@ -4,27 +4,23 @@ import Google from "../../assets/login_logo/google-removebg-preview.png";
 import Apple from "../../assets/login_logo/shau-removebg-preview.png";
 import "../../styles/components/login.scss";
 
-type LoginProps = {
+type SignupProps = {
   isOpen: boolean;
   onClose: () => void;
-  switchToSignup: () => void;
-  switchToForgotPassword: () => void;
+  switchToLogin: () => void;
 };
 
-const Login: React.FC<LoginProps> = ({ isOpen, onClose, switchToSignup, switchToForgotPassword }) => {
+const Signup: React.FC<SignupProps> = ({ isOpen, onClose, switchToLogin }) => {
   const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const isFormValid = emailOrUsername.trim() !== '' && password.trim() !== '';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Logging in with:", { emailOrUsername, password });
+    console.log("Signing up with:", { emailOrUsername });
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h2 className="title">Log In</h2>
+      <h2 className="title">Sign Up</h2>
       <p className="disclaimer">
         By continuing, you agree to our <a href="#">User Agreement</a> and acknowledge our <a href="#">Privacy Policy</a>.
       </p>
@@ -45,21 +41,13 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, switchToSignup, switchTo
           onChange={(e) => setEmailOrUsername(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <a href="#" className="forgot" onClick={(e) => { e.preventDefault(); switchToForgotPassword(); }}>Forgot password?</a>
-        <p className="signup">New to Reddit? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignup(); }}>Sign Up</a></p>
-        <button type="submit" className="submit" style={isFormValid ? { backgroundColor: "#AE2C00", color: "white", cursor: "pointer" } : undefined} disabled={!isFormValid}>
-          Log In
+        <p className="signup">Already a Redditor? <a href="#" onClick={(e) => { e.preventDefault(); switchToLogin(); }}>Log In</a></p>
+        <button type="submit" className="submit" style={emailOrUsername ? { backgroundColor: "#AE2C00", color: "white", cursor: "pointer" } : undefined} disabled={!emailOrUsername}>
+          Sign Up
         </button>
       </form>
     </Modal>
   );
 };
 
-export default Login;
+export default Signup;

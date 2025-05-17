@@ -5,6 +5,8 @@ import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import Login from "../form/login";
+import Signup from "../form/signup";
+import ForgotPassword from "../form/forgotpassword";
 import QR from "../qr/qr";
 import { IoIosLogIn } from "react-icons/io";
 import { MdOutlineAdsClick } from "react-icons/md";
@@ -12,9 +14,10 @@ import { BsBarChartLineFill } from "react-icons/bs";
 import { TbShoppingBag } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 
+type ModalType = 'login' | 'signup' | 'forgot-password' | 'qr' | null;
+
 const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: boolean }) => {
-  const [isLoginOpen, setLoginOpen] = useState(false);
-  const [isQROpen, setQROpen] = useState(false);
+  const [modalType, setModalType] = useState<ModalType>(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
@@ -25,10 +28,7 @@ const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: bool
     };
 
     document.addEventListener('click', closeDropdown);
-
-    return () => {
-      document.removeEventListener('click', closeDropdown);
-    };
+    return () => document.removeEventListener('click', closeDropdown);
   }, []);
 
   return (
@@ -51,13 +51,13 @@ const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: bool
 
         <div className="button-container">
           {!isMobile && (
-            <button className="get-app" onClick={() => { setQROpen(true) }}>
+            <button className="get-app" onClick={() => setModalType('qr')}>
               <MdOutlineQrCodeScanner className="icon" />
               <span>Get App</span>
             </button>
           )}
 
-          <button className="log-in" onClick={() => { setLoginOpen(true) }}>Log In</button>
+          <button className="log-in" onClick={() => setModalType('login')}>Log In</button>
 
           <div className="three-dot-container">
             <button className="three-dot" onClick={(e) => {
@@ -68,10 +68,9 @@ const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: bool
             </button>
             {showDropdown && (
               <div className="dropdown-menu">
-                <button onClick={() => setLoginOpen(true)}>
+                <button onClick={() => setModalType('login')}>
                   <IoIosLogIn /> Login/Sign Up
                 </button>
-
                 <button onClick={() => alert("Advertise on Reddit Clicked")}>
                   <MdOutlineAdsClick /> Advertise on Reddit
                 </button>
@@ -86,8 +85,27 @@ const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: bool
           </div>
         </div>
       </nav>
-      <Login isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-      <QR isOpen={isQROpen} onClose={() => setQROpen(false)} />
+
+      <Login 
+        isOpen={modalType === 'login'} 
+        onClose={() => setModalType(null)} 
+        switchToSignup={() => setModalType('signup')}
+        switchToForgotPassword={() => setModalType('forgot-password')}
+      />
+      <Signup 
+        isOpen={modalType === 'signup'} 
+        onClose={() => setModalType(null)} 
+        switchToLogin={() => setModalType('login')} 
+      />
+      <ForgotPassword 
+        isOpen={modalType === 'forgot-password'} 
+        onClose={() => setModalType(null)} 
+        switchToLogin={() => setModalType('login')} 
+      />
+      <QR 
+        isOpen={modalType === 'qr'} 
+        onClose={() => setModalType(null)} 
+      />
     </>
   );
 };
