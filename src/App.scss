@@ -1,16 +1,75 @@
 @use "variables/variable.scss" as *;
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.below-nav{
-  display: flex;
-  width: 100vw;
+
+body {
+  overflow-x: hidden; 
 }
+
+.below-nav {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .main-content {
   min-height: 100vh;
-  margin-left: 240px; 
+  width: 100%;
   background-color: $background-color;
-  overflow:hidden;
+  transition: margin-left 0.3s ease;
+
+  &.with-sidebar {
+    margin-left: 240px;
+    
+    @media (max-width: 1024px) {
+      margin-left: 200px;
+    }
+    
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+
+  &.collapsed-sidebar {
+    margin-left: 60px;
+    
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+}
+
+.nav-bur {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  width: 34px;
+  background-color: $background-color;
+  border: 1px solid rgba(151, 147, 147, 0.556);
+  border-radius: 50%;
+  top: 80px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    border-color: white;
+  }
+  
+  @media (max-width: 768px) {
+    top: 75px;
+    left: 10px !important; 
+    height: 30px;
+    width: 30px;
+  }
 }

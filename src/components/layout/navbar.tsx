@@ -1,6 +1,6 @@
 import logo from "../../assets/Reddit_Logo.png";
 import "../../styles/components/navbar.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
@@ -10,14 +10,36 @@ import { IoIosLogIn } from "react-icons/io";
 import { MdOutlineAdsClick } from "react-icons/md";
 import { BsBarChartLineFill } from "react-icons/bs";
 import { TbShoppingBag } from "react-icons/tb";
-const Navbar = () => {
+import { RxHamburgerMenu } from "react-icons/rx";
+
+const Navbar = ({ toggleNav, isMobile }: { toggleNav: () => void, isMobile: boolean }) => {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isQROpen, setQROpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+
+  useEffect(() => {
+    const closeDropdown = (e: MouseEvent) => {
+      if (!(e.target as HTMLElement).closest('.three-dot-container')) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', closeDropdown);
+
+    return () => {
+      document.removeEventListener('click', closeDropdown);
+    };
+  }, []);
+
   return (
     <>
       <nav>
         <div className="logo">
+          {isMobile && (
+            <button className="burger-btn" onClick={toggleNav}>
+              <RxHamburgerMenu />
+            </button>
+          )}
           <img src={logo} alt="Reddit Logo" />
           <p>reddit</p>
         </div>
@@ -28,12 +50,20 @@ const Navbar = () => {
         </div>
 
         <div className="button-container">
-          <button className="get-app" onClick={() => { setQROpen(true) }}>
-            <MdOutlineQrCodeScanner className="icon" /> Get App
-          </button>
+          {!isMobile && (
+            <button className="get-app" onClick={() => { setQROpen(true) }}>
+              <MdOutlineQrCodeScanner className="icon" />
+              <span>Get App</span>
+            </button>
+          )}
+
           <button className="log-in" onClick={() => { setLoginOpen(true) }}>Log In</button>
+
           <div className="three-dot-container">
-            <button className="three-dot" onClick={() => setShowDropdown(!showDropdown)}>
+            <button className="three-dot" onClick={(e) => {
+              e.stopPropagation();
+              setShowDropdown(!showDropdown);
+            }}>
               <BsThreeDots />
             </button>
             {showDropdown && (
@@ -42,10 +72,15 @@ const Navbar = () => {
                   <IoIosLogIn /> Login/Sign Up
                 </button>
 
-                <button onClick={() => alert("Advertise on Reddit Clicked")}><MdOutlineAdsClick />  Advertise on Reddit</button>
-                <button onClick={() => alert("Try Reddit Pro BETA Clicked")}><BsBarChartLineFill /> Try Reddit Pro BETA</button>
-                <button onClick={() => alert("Shop Collective Avatars Clicked")}><TbShoppingBag />  Shop Collective Avatars</button>
-
+                <button onClick={() => alert("Advertise on Reddit Clicked")}>
+                  <MdOutlineAdsClick /> Advertise on Reddit
+                </button>
+                <button onClick={() => alert("Try Reddit Pro BETA Clicked")}>
+                  <BsBarChartLineFill /> Try Reddit Pro BETA
+                </button>
+                <button onClick={() => alert("Shop Collective Avatars Clicked")}>
+                  <TbShoppingBag /> Shop Collective Avatars
+                </button>
               </div>
             )}
           </div>

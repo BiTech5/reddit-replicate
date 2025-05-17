@@ -1,23 +1,40 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import "../../styles/components/Carousel.scss";
 
 const ScrollCard = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [showControls, setShowControls] = useState(true);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setShowControls(window.innerWidth > 768);
+    };
+
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
 
   const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
   };
 
   const items = Array(7).fill("https://thispersondoesnotexist.com");
 
   return (
     <div className="carousel-container">
-      <IoIosArrowBack className="arrow-btn" onClick={scrollLeft} />
+      {showControls && (
+        <IoIosArrowBack className="arrow-btn left" onClick={scrollLeft} />
+      )}
       <div className="carousel-items-container" ref={scrollRef}>
         {items.map((item, index) => (
           <div
@@ -26,7 +43,6 @@ const ScrollCard = () => {
             style={{ backgroundImage: `url(${item})` }}
           >
             <div className="detail">
-
               <h1>Heading</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               <div className="user-detail">
@@ -37,7 +53,9 @@ const ScrollCard = () => {
           </div>
         ))}
       </div>
-      <IoIosArrowForward className="arrow-btn" onClick={scrollRight} />
+      {showControls && (
+        <IoIosArrowForward className="arrow-btn right" onClick={scrollRight} />
+      )}
     </div>
   );
 };
