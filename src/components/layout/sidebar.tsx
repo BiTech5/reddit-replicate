@@ -12,6 +12,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { FiTool } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import "../../styles/components/sidebar.scss";
+
 import { NavLink } from "react-router-dom";
 
 interface SidebarProps {
@@ -21,6 +22,12 @@ interface SidebarProps {
 const Sidebar = ({ navOpen }: SidebarProps) => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+
+import { NavLink, Link } from "react-router-dom";
+const Sidebar = () => {
+  const [isTopicsOpen, setIsTopicsOpen] = useState(true);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(true);
+
 
   const topics = [
     { icon: <PiMaskHappyFill />, name: "Internet Culture (Viral)" },
@@ -32,13 +39,13 @@ const Sidebar = ({ navOpen }: SidebarProps) => {
   ];
 
   const resources = [
-    { icon: <RiRedditLine />, name: "About Reddit" },
-    { icon: <HiSpeakerWave />, name: "Advertise" },
-    { icon: <BsBarChartLine />, name: "Reddit Pro" },
-    { icon: <FaRegQuestionCircle />, name: "Help" },
-    { icon: <FaBookOpen />, name: "Blog" },
-    { icon: <FiTool />, name: "Careers" },
-    { icon: <TbMicrophone2 />, name: "Press" }
+    { icon: <RiRedditLine />, name: "About Reddit", url: "https://redditinc.com/" },
+    { icon: <HiSpeakerWave />, name: "Advertise", url: "https://ads.reddit.com/register?utm_source=web3x_consumer&utm_name=left_nav_cta" },
+    { icon: <BsBarChartLine />, name: "Reddit Pro", url: "https://www.reddit.com/reddit-pro?utm_source=reddit&utm_medium=left_nav_resources" },
+    { icon: <FaRegQuestionCircle />, name: "Help", url: "https://support.reddithelp.com/hc/en-us?utm_campaign=evergreen&utm_medium=footer&utm_source=reddit" },
+    { icon: <FaBookOpen />, name: "Blog", url: "https://redditinc.com/blog" },
+    { icon: <FiTool />, name: "Careers", url: "https://redditinc.com/careers" },
+    { icon: <TbMicrophone2 />, name: "Press", url: "https://redditinc.com/press" }
   ];
 
   return (
@@ -75,16 +82,25 @@ const Sidebar = ({ navOpen }: SidebarProps) => {
             <ul className="nested-list">
               {resources.map((resource, index) => (
                 <li key={index}>
-                  <NavLink to={`/${resource.name}`}>
+                  <Link to={`${resource.url}`}>
                     {resource.icon} {resource.name}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>
           )}
 
+
           <li><FaRegStar /> {navOpen && 'Communities'}</li>
           <li><CgSandClock /> {navOpen && 'Best of Reddit'}</li>
+
+          <li><NavLink to={"https://www.reddit.com/best/communities/1/"}>
+            <FaRegStar /> Communities
+          </NavLink></li>
+          <li><NavLink to={"https://www.reddit.com/posts/2025/global/"}>
+            <CgSandClock /> Best of Reddit
+          </NavLink></li>
+
         </ul>
       )}
 
