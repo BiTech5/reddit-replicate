@@ -2,7 +2,7 @@ import "../styles/pages/homes.scss";
 import PostCard from "../components/card/PostCard";
 import CommunityCard from "../components/card/CommunityCard";
 import { useState, useEffect } from "react";
-import { fetchNewsArticles } from "../Service/reddit"; 
+import { fetchNewsArticles } from "../Service/reddit";
 import type Article from "../models/iPost";
 
 const Home = () => {
@@ -34,11 +34,21 @@ const Home = () => {
   }, []);
 
   if (loading) {
-    return <h1>Loading articles...</h1>;
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <h2>Loading articles, please wait...</h2>
+      </div>
+    );
   }
 
   if (articles.length === 0) {
-    return <h1>No articles found</h1>;
+    return (
+      <div className="no-articles-container">
+        <h2>Oops! No articles found.</h2>
+        <p>Try refreshing the page or check back later.</p>
+      </div>
+    );
   }
 
   return (
