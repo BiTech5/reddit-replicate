@@ -1,8 +1,10 @@
 import { BsThreeDots } from "react-icons/bs";
 import "../../styles/components/postcard.scss";
 import PostActions from "../ui/PostActions";
-
+import { useState } from "react";
+import ReportBtn from "../ui/Report";
 const PostCard = () => {
+    const [isReportOpen,setReportOpen]=useState(false);
     return (
         <div className="post-card">
             <hr />
@@ -17,12 +19,14 @@ const PostCard = () => {
                     </div>
                     <div className="btns">
                         <button className="join-btn">Join</button>
-                        <button className="three-dot-btn">
+                        <button className="three-dot-btn" onClick={()=>{setReportOpen(!isReportOpen)}}>
                             <BsThreeDots />
                         </button>
                     </div>
                 </div>
-
+                {isReportOpen &&(
+                    <ReportBtn/>
+                )}
                 <div className="post-content">
                     <h1 className="post-heading">Heading</h1>
                     <p className="post-text">
