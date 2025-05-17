@@ -12,19 +12,12 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { FiTool } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import "../../styles/components/sidebar.scss";
-
-import { NavLink } from "react-router-dom";
-
 interface SidebarProps {
   navOpen: boolean;
 }
 
-const Sidebar = ({ navOpen }: SidebarProps) => {
-  const [isTopicsOpen, setIsTopicsOpen] = useState(false);
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
-
 import { NavLink, Link } from "react-router-dom";
-const Sidebar = () => {
+const Sidebar:React.FC<SidebarProps> = ({navOpen}) => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(true);
   const [isResourcesOpen, setIsResourcesOpen] = useState(true);
 
@@ -91,15 +84,13 @@ const Sidebar = () => {
           )}
 
 
-          <li><FaRegStar /> {navOpen && 'Communities'}</li>
-          <li><CgSandClock /> {navOpen && 'Best of Reddit'}</li>
 
-          <li><NavLink to={"https://www.reddit.com/best/communities/1/"}>
+          <li><Link to={"https://www.reddit.com/best/communities/1/"}>
             <FaRegStar /> Communities
-          </NavLink></li>
-          <li><NavLink to={"https://www.reddit.com/posts/2025/global/"}>
+          </Link></li>
+          <li><Link to={"https://www.reddit.com/posts/2025/global/"}>
             <CgSandClock /> Best of Reddit
-          </NavLink></li>
+          </Link></li>
 
         </ul>
       )}
